@@ -1,17 +1,38 @@
-<div class="container"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.gt-md="space-around center"
-    fxLayoutGap="10px" 
-    fxLayoutGap.xs="0">
-
-  <div fxFlex="40">
-    <p>Display the details of the Dish here</p>
-  </div>
-
-  <div fxFlex="40">
-    <p>Display the list of comments here</p>
-  </div>
-
+<div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
+    fxLayoutAlign.gt-md="space-around center" fxLayoutGap="2px" fxLayoutGap.xs="0">
+    <div fxFlex="70">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h3>{{dish.name | uppercase}}</h3>
+                </mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+            <mat-card-content>
+                <p>{{dish.description}}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>LIKE</button>
+                <button mat-button>SHARE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+<div fxFlex="40" vertical-align="top">
+    <div fxFlex>
+        <mat-card-header>
+            <mat-card-title>
+                <h3>{{comments | uppercase}}</h3>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-list-item *ngFor="let link of dish.comments">
+            <p matLine role="listitem" class="paragraph">
+                <span class="paragraph">{{ link.comment }}</span>
+                <br />
+                <span>{{link.rating}} {{ratingtext}}</span>
+                <br />
+                <span>-- {{link.author}} {{link.date | date}}</span>
+            </p>
+        </mat-list-item>
+    </div>
 </div>
