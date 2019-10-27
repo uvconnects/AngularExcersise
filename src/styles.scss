@@ -21,7 +21,10 @@ $divider-color:        #BDBDBD;
 }
 
 
-
+$background-moredark: #4527A0;
+.active {
+  background: $background-moredark;
+}
 .background-primary {
     background-color: $background-dark!important;
   }

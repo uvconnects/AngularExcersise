@@ -11,4 +11,12 @@ export class DishService {
   getDishes(): Dish[] {
    return DISHES;
   }
+    getDish(id: any): Dish {
+   //   DISHES.find((dish) => dish.id === id.toString());
+    return DISHES.filter((dish) => (dish.id === id.toString()))[0];
+  }
+
+  getFeaturedDish(): Dish {
+    return DISHES.filter((dish) => dish.featured)[0];
+  }
 }

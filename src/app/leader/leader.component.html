@@ -1,0 +1,14 @@
+<div class="container" >
+    <div fxFlex="170">
+        <mat-list>
+            <mat-list-item class="md-7-line" layout="row" *ngFor="let l of leader">
+                <img mat-list-avatar src={{l.image}} alt={{l.name}} />
+                <div class="no-margin md-list-item-text" >
+                    <p mat-line>{{l.name}} {{l.abbr}}<br />
+                    {{l.designation}}<br />
+                    {{l.description}}<br />
+                </div>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

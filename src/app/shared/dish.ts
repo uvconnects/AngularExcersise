@@ -10,3 +10,4 @@ export class Dish {
     description: string;
     comments: Comment[];
 }
+
