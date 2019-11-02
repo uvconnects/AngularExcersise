@@ -5,16 +5,16 @@ import {LEADERS} from '../shared/leaders';
   providedIn: 'root'
 })
 export class LeaderService {
-  getLeaders(): Leaders[] {
-    return LEADERS;
+  getLeaders(): Promise<Leaders[]> {
+    return Promise.resolve(LEADERS);
    }
   constructor() { }
 
-  getLeader(id: string): Leaders {
-    return LEADERS.filter((lead) => (lead.id === id))[0];
+  getLeader(id: string): Promise<Leaders> {
+    return Promise.resolve(LEADERS.filter((lead) => (lead.id === id))[0]);
   }
 
-  getFeaturedLeaders(): Leaders {
-    return LEADERS.filter((leaders) => leaders.featured)[0];
+  getFeaturedLeaders(): Promise<Leaders> {
+    return Promise.resolve(LEADERS.filter((leaders) => leaders.featured)[0]);
   }
 }
