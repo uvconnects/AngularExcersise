@@ -5,7 +5,7 @@ import {MatDialog, MatDialogRef} from '@angular/material';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit {ll
   user =  {username: '', password: '', remember: false};
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>) { }
