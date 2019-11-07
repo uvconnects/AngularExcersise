@@ -1,0 +1,3 @@
+[submodule "ConFusion"]
+	path = ConFusion
+	url = https://github.com/Sevensnake/ConFusion.git
