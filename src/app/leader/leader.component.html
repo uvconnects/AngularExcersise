@@ -11,8 +11,11 @@
             </mat-list-item>
         </mat-list>
     </div>
-    <div fxFlex [hidden]="leader">
-        <mat-spinner></mat-spinner>
-        <h4>Loading ... Please wait</h4>
-    </div>
-</div>
+    <div fxFlex [hidden]="leader || leaderrormsg">
+            <mat-spinner></mat-spinner><h4>Loading ... Please wait</h4>
+          </div>
+            <div fxFlex *ngIf="leaderrormsg">
+                <h2>Error</h2>
+                <h4>{{leaderrormsg}}</h4>
+              </div>
+      </div>

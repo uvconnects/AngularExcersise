@@ -7,7 +7,7 @@
                     <h3>{{dish.name | uppercase}}</h3>
                 </mat-card-title>
             </mat-card-header>
-            <img mat-card-image src={{dish.image}} alt={{dish.name}}>
+            <img mat-card-image src="{{baseURL + dish.image}}" alt={{dish.name}}>
             <mat-card-content>
                 <p>{{dish.description}}</p>
             </mat-card-content>
@@ -27,15 +27,11 @@
 <div fxFlex="40" vertical-align="top" *ngIf="dish">
     <mat-list>
         <h3>comments</h3>
-        <mat-list-item *ngFor="let list of dish.comments" class="text">
+        <mat-list-item *ngFor="let comment of dish.comments" class="text">
+            <h4 mat-line> {{comment.comment}} </h4>
             <p mat-line>
-                <span> {{list.comment}} </span>
-                <br />
-                <span> {{list.rating}} Stars</span>
-                <br />
-                <span> -- {{list.author}} {{list.date | date}} </span>
-            </p>
-            <p>&nbsp;</p>
+                {{comment.rating}} Stars</p>
+            <p mat-line> -- {{comment.author}} {{comment.date | date}} </p>
         </mat-list-item>
 
         <p>{{ dishfeedform.value | json}} {{ dishfeedform.status| json}}</p>
@@ -47,7 +43,8 @@
                 </mat-form-field>
             </p>
             <p>
-                <mat-slider min="1" max="5" [(ngModel)]="resetvalue" formControlName="rating" #slider thumbLabel tickInterval="1"></mat-slider>
+                <mat-slider min="1" max="5" [(ngModel)]="resetvalue" formControlName="rating" #slider thumbLabel
+                    tickInterval="1"></mat-slider>
             </p>
             <p>
                 <mat-form-field>
@@ -62,9 +59,12 @@
     </mat-list>
     <div>
     </div>
-    <div fxFlex [hidden]="dish">
+    <div fxFlex [hidden]="dish || errorMsg">
         <mat-spinner></mat-spinner>
         <h4>Loading ... Please wait</h4>
     </div>
-
+    <div fxFlex *ngIf="errorMsg" style="color:red">
+        <h2>Error</h2>
+        <h4>{{errorMsg}}</h4>
+    </div>
 </div>
