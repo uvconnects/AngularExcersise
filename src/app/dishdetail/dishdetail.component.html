@@ -1,6 +1,6 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
     fxLayoutAlign.gt-md="space-around center" fxLayoutGap="2px" fxLayoutGap.xs="0">
-    <div fxFlex="70">
+    <div fxFlex="70" *ngIf="dish">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>
@@ -27,7 +27,7 @@
 <div fxFlex="40" vertical-align="top" *ngIf="dish">
     <mat-list>
         <h3>comments</h3>
-        <mat-list-item *ngFor="let list of dish.comments">
+        <mat-list-item *ngFor="let list of dish.comments" class="text">
             <p mat-line>
                 <span> {{list.comment}} </span>
                 <br />
@@ -35,10 +35,36 @@
                 <br />
                 <span> -- {{list.author}} {{list.date | date}} </span>
             </p>
+            <p>&nbsp;</p>
         </mat-list-item>
+
+        <p>{{ dishfeedform.value | json}} {{ dishfeedform.status| json}}</p>
+        <form novalidate [formGroup]="dishfeedform" #fform="ngForm" (ngSubmit)="onSubmit()">
+            <p>
+                <mat-form-field>
+                    <input matInput formControlName="author" placeholder="Name" type="text" required>
+                    <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-slider min="1" max="5" [(ngModel)]="resetvalue" formControlName="rating" #slider thumbLabel tickInterval="1"></mat-slider>
+            </p>
+            <p>
+                <mat-form-field>
+                    <textarea matInput formControlName="comment" placeholder="Your comment" rows="5">
+                            </textarea>
+                    <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+                </mat-form-field>
+            </p>
+            <p> <button type="submit" mat-button class="background-primary text-floral-white"
+                    [disabled]="dishfeedform.invalid">Submit</button></p>
+        </form>
     </mat-list>
+    <div>
+    </div>
     <div fxFlex [hidden]="dish">
         <mat-spinner></mat-spinner>
         <h4>Loading ... Please wait</h4>
     </div>
+
 </div>
