@@ -1,7 +1,7 @@
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
     fxLayoutAlign.gt-md="space-around center" fxLayoutGap="2px" fxLayoutGap.xs="0">
     <div fxFlex="70" *ngIf="dish">
-        <mat-card [@visibility]="visibility">
+        <mat-card [@visibility]="visibility" >
             <mat-card-header>
                 <mat-card-title *ngIf="dish" >
                     <h3>{{dish.name | uppercase}}</h3>

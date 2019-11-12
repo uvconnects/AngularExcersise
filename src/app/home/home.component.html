@@ -29,7 +29,7 @@
     </mat-card-title>
   </mat-card-header>
   <img mat-card-image src="{{baseURL + promotion.image}}" alt={{promotion.name}}>
-  <mat-card-content>
+  <mat-card-content [@expand]>
     <p>{{promotion.description}}
     </p>
   </mat-card-content>
@@ -37,7 +37,7 @@
 <div fxFlex [hidden]="promotion">
     <mat-spinner></mat-spinner><h4>Loading ... Please wait</h4>
   </div>
-<mat-card *ngIf="leader" fxFlex>
+<mat-card *ngIf="leader" fxFlex [@expand]>
     <mat-card-header>
       <div mat-card-avatar></div>
       <mat-card-title>
@@ -45,7 +45,7 @@
       </mat-card-title>
     </mat-card-header>
     <img mat-card-image src="{{baseURL + leader.image}}" alt={{leader.name}}>
-    <mat-card-content>
+    <mat-card-content [@expand]>
       <p>{{leader.description}}
       </p>
     </mat-card-content>
