@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseURL": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

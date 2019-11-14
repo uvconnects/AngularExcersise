@@ -110,7 +110,7 @@ export class DishdetailComponent implements OnInit {
     this.dishfeedform.value.date = new Date().toDateString();
     this.dishcopy.comments.push(this.dishfeedform.value);
     this.dishservice.putDish(this.dishcopy).subscribe(dish => {
-      this.dish = dish; this.dishcopy = dish;
+      this.dish = dish;
       errorMsg => { this.dish = null; this.dishcopy = null; this.errorMsg = <any>errorMsg; }
     });
     this.dishfeedform.reset({
