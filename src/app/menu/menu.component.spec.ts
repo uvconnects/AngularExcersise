@@ -4,40 +4,48 @@ import { MenuComponent } from './menu.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { DishService } from '../services/dish.service';
-import { baseURL } from '../shared/baseURL';
-import { Observable } from 'rxjs';
-import { DISHES } from '../shared/dishes';
-import {of } from 'rxjs';
 import { Dish } from '../shared/dish';
+import { DishService } from '../services/dish.service';
+import { DISHES } from '../shared/dishes';
+import { baseURL } from '../shared/baseurl';
+import { Observable, of } from 'rxjs';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
 
   beforeEach(async(() => {
+
     const dishServiceStub = {
       getDishes: function(): Observable<Dish[]> {
         return of(DISHES);
       }
-    }
+    };
+
     TestBed.configureTestingModule({
-      declarations: [ MenuComponent ],
-      imports: [
-        BrowserAnimationsModule,
+      imports: [ BrowserAnimationsModule,
         FlexLayoutModule,
         MatGridListModule,
         MatProgressSpinnerModule,
-        RouterTestingModule.withRoutes([{path: 'menu', component: MenuComponent}])
+        RouterTestingModule.withRoutes([{ path: 'menu', component: MenuComponent }])
       ],
-      providers: [{provide: DishService, useValue: dishServiceStub},
-      {provide: 'BaseUrl', useValue: baseURL}],
-
+      declarations: [ MenuComponent ],
+      providers: [
+        { provide: DishService, useValue: dishServiceStub },
+        { provide: 'baseURL', useValue: baseURL },
+      ]
     })
     .compileComponents();
     const dishservice = TestBed.get(DishService);
+    it('dishes items should be 4', () => {
+      expect(component.dishes.length).toBe(4);
+      expect(component.dishes[1].name).toBe('Zucchipakoda');
+      expect(component.dishes[3].featured).toBeFalsy();
+    });
   }));
 
   beforeEach(() => {
