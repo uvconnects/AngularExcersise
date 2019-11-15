@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedBack, ContactType } from '../shared/feedback';
 import { visibility, flyInOut, expand } from '../animations/app.animations';
 import { ContactService } from '../services/contact.service';
-import { delay } from 'rxjs/operators';
+import { delay, concatMap } from 'rxjs/operators';
+import { of, from } from 'rxjs';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -23,7 +24,7 @@ export class ContactComponent implements OnInit {
   contactcopy: FeedBack;
   errorMsg: string;
   showForm = true;
-  visibility='shown';
+  visibility = 'shown';
   showspinner = false;
   headertext: string;
   @ViewChild('cfform', { static: false }) feedbackFormDirect: any;
@@ -113,26 +114,33 @@ export class ContactComponent implements OnInit {
     this.ct.putcontacts(this.feedbackForm.value).subscribe(feedback => {
       this.showspinner = false;
       this.feedback = feedback;
-      setTimeout(function(){
-        this.showForm = true;
-      }, 5000);
-        errorMsg => { this.feedback = null; this.errorMsg = <any>errorMsg; }
+      const myArray = [1, 2, 3, 4, 5]; // 5 second wait time from lesson
+      from(myArray).pipe(
+        concatMap(item => of(item).pipe(delay(1000)))
+      ).subscribe(timedItem => {
+        if (timedItem === 5) {
+          this.visibility = 'shown'; // show form again
+          this.resetformafter5seconds(); // reset
+          this.feedback = this.contactcopy; // empty 
+        }
+      });
+      errorMsg => { this.feedback = null; this.errorMsg = <any>errorMsg; }
     });
-  
 
-   
+
   }
   resetformafter5seconds(): void {
-    this.visibility = 'shown'
+    // Form cleared out here
     this.headertext = '';
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
-      telnum: 0,
+      telnum: '',
       email: '',
       agree: false,
       contacttype: 'None',
       message: ''
     });
+    this.feedbackFormDirect.resetForm();
   }
 }

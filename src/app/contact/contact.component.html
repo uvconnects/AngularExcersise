@@ -33,11 +33,11 @@
       </div>
     </div>
   </div>
-  <div fxFlex fxFlexOffset="30px" class="form-size">
-    <h2>Send us your Feedback</h2>
-    <h2>{{headertext }}</h2>
-    <mat-spinner *ngIf="showspinner"></mat-spinner>
-    <div *ngIf="feedback" [@flyInOut]="true">
+  <h2>Send us your Feedback</h2>
+  <h2>{{headertext }}</h2>
+  <mat-spinner *ngIf="showspinner"></mat-spinner>
+  <div fxFlex fxFlexOffset="30px" class="form-size"  *ngIf="feedback">
+    <div [@flyInOut]="true">
       <mat-list role="list">
         <mat-list-item role="listitem">First Name: {{feedback.firstname}}</mat-list-item>
         <mat-list-item role="listitem"> Last Name: {{feedback.lastname}}</mat-list-item>
@@ -49,7 +49,7 @@
       </mat-list>
     </div>
   </div>
-    <form novalidate [formGroup]="feedbackForm" #cfform="ngForm" (ngSubmit)="onSubmit()" *ngIf="showForm">
+    <form novalidate [formGroup]="feedbackForm" #cfform="ngForm" (ngSubmit)="onSubmit()"  [@visibility]="visibility">
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
