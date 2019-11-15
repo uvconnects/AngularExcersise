@@ -2,7 +2,7 @@
     <div fxFlex="170" *ngIf="leader">
         <mat-list>
             <mat-list-item class="md-7-line" layout="row" *ngFor="let l of leader">
-                <img mat-list-avatar src={{l.image}} alt={{l.name}} />
+                <img mat-list-avatar src="{{baseURL + l.image}}" alt={{l.name}} />
                 <div class="no-margin md-list-item-text">
                     <p mat-line>{{l.name}} {{l.abbr}}<br />
                         {{l.designation}}<br />

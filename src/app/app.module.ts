@@ -33,8 +33,8 @@ import { LoginComponent } from './login/login.component';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import {ProcessHTTPMsgService} from './services/process-httpmsg.service';
-
 import { baseURL} from './shared/baseURL';
+import { HighlightDirective } from './directives/highlight.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,8 @@ import { baseURL} from './shared/baseURL';
     AboutComponent,
     ContactComponent,
     LeaderComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
