@@ -8,16 +8,9 @@ import { baseURL } from '../shared/baseURL';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService {
+export class FeedbackService {
 
   constructor(private http: HttpClient,  private processhttpmsg: ProcessHTTPMsgService) { }
-  getContacts(): Observable<FeedBack[]> {
-    return this.http.get<FeedBack[]>(baseURL + 'feedback').pipe(catchError(this.processhttpmsg.handleError));
-  }
-
-  getContactsitem(id: number): Observable<FeedBack> {
-    return this.http.get<FeedBack>(baseURL + 'feedback/' + id).pipe(catchError(this.processhttpmsg.handleError));
-  }
   putcontacts(feedback: FeedBack): Observable<FeedBack> {
     const httpOptions = {
       headers: new  HttpHeaders({

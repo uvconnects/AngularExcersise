@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedBack, ContactType } from '../shared/feedback';
 import { visibility, flyInOut, expand } from '../animations/app.animations';
-import { ContactService } from '../services/contact.service';
+import { FeedbackService } from '../services/feedback.service';
 import { delay, concatMap } from 'rxjs/operators';
 import { of, from } from 'rxjs';
 @Component({
@@ -59,7 +59,7 @@ export class ContactComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder, private ct: ContactService) {
+  constructor(private fb: FormBuilder, private ct: FeedbackService) {
     this.createForm();
   }
   ngOnInit() {
