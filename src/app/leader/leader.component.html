@@ -1,5 +1,5 @@
 <div class="container">
-    <div fxFlex="170" *ngIf="leader">
+    <div fxFlex="70" *ngIf="leader">
         <mat-list>
             <mat-list-item class="md-7-line" layout="row" *ngFor="let l of leader">
                 <img mat-list-avatar src="{{baseURL + l.image}}" alt={{l.name}} />
@@ -12,10 +12,11 @@
         </mat-list>
     </div>
     <div fxFlex [hidden]="leader || leaderrormsg">
-            <mat-spinner></mat-spinner><h4>Loading ... Please wait</h4>
-          </div>
-            <div fxFlex *ngIf="leaderrormsg">
-                <h2>Error</h2>
-                <h4>{{leaderrormsg}}</h4>
-              </div>
-      </div>
+        <mat-spinner></mat-spinner>
+        <h4>Loading ... Please wait</h4>
+    </div>
+    <div fxFlex *ngIf="leaderrormsg">
+        <h2>Error</h2>
+        <h4>{{leaderrormsg}}</h4>
+    </div>
+</div>
