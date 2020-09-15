@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import 'hammerjs';
+/* import 'hammerjs'; */
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -20,7 +20,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatSliderModule} from '@angular/material/slider';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import { HammerModule} from '@angular/platform-browser';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
 import { HeaderComponent } from './header/header.component';
@@ -50,6 +50,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     HighlightDirective
   ],
   imports: [
+    HammerModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -69,13 +70,12 @@ import { HighlightDirective } from './directives/highlight.directive';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatSliderModule,
-    HttpModule,
     HttpClientModule
   ],
   entryComponents: [
     LoginComponent
   ],
-  providers: [DishService, {provide: 'baseURL', useValue: baseURL}, ProcessHTTPMsgService ],
+  providers: [DishService, {provide: 'baseURL', useValue: baseURL},  ProcessHTTPMsgService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
